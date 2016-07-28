@@ -1,6 +1,6 @@
 TARGET:=ut_run
 
-GXX:=clang++
+GXX:=g++
 SRC_DIRS:=.
 C_SRCS:=$(foreach d, $(SRC_DIRS), $(wildcard $d/*.c))
 CXX_SRCS:=$(foreach d,$(SRC_DIRS), $(wildcard $d/*.cpp))
@@ -8,7 +8,7 @@ C_OBJS:=$(C_SRCS:.c=.o)
 CXX_OBJS:=$(CXX_SRCS:.cpp=.o)
 GTEST_DIR:=../googletest/googletest
 FLAGS:=-I$(GTEST_DIR)/include -I . 
-LDFLAGS:=-L$(GTEST_DIR)/build -lgtest -lstdc++ 
+LDFLAGS:=-L$(GTEST_DIR)/make -lgtest -lstdc++ -lpthread
 
 $(TARGET) : $(CXX_OBJS) $(C_OBJS)
 	echo $(LDFLAGS)
